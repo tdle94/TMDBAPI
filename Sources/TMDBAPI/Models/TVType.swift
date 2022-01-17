@@ -9,19 +9,19 @@ import Foundation
 
 public struct TVType: Decodable {
     public struct Result: Decodable {
-        let id: Int
-        let name: String
-        let popularity: Double
-        let overview: String
-        let posterPath: String?
-        let backdropPath: String?
-        let voteAverage: Double
-        let voteCount: Int
-        let firstAirDate: String?
-        let originCountry: [String]
-        let genreIds: [Int]
-        let originalLanguage: String
-        let originalName: String
+        public let id: Int
+        public let name: String
+        public let popularity: Double
+        public let overview: String
+        public let posterPath: String?
+        public let backdropPath: String?
+        public let voteAverage: Double
+        public let voteCount: Int
+        public let firstAirDate: String?
+        public let originCountry: [String]
+        public let genreIds: [Int]
+        public let originalLanguage: String
+        public let originalName: String
         
         enum CodingKeys: String, CodingKey {
             case id, name, popularity, overview
@@ -43,8 +43,8 @@ public struct TVType: Decodable {
         case totalResults = "total_results"
     }
 
-    let page: Int
-    let results: [Result]
-    let totalPages: Int
-    let totalResults: Int
+    public let page: Int
+    public let results: [Result]
+    public let totalPages: Int
+    public let totalResults: Int
 }
