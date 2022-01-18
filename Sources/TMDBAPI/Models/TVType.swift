@@ -22,7 +22,11 @@ public struct TVType: Decodable {
         public let genreIds: [Int]
         public let originalLanguage: String
         public let originalName: String
-        
+
+        public var posterLink: String {
+            return "https://image.tmdb.org/t/p/w200" + (posterPath ?? "")
+        }
+
         enum CodingKeys: String, CodingKey {
             case id, name, popularity, overview
             case posterPath = "poster_path"
