@@ -134,7 +134,7 @@ public struct TVDetail: Decodable {
     public let firstAirDate: String
     public let createdBy: [CreatedBy]
     public let inProduction: Bool
-    public let lastAirDate: String
+    public let lastAirDate: String?
     public let lastEpisodeToAir: LastEpisodeToAir?
     public let numberOfEpisodes: Int
     public let numberOfSeasons: Int
