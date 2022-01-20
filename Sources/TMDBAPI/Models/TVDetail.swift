@@ -28,7 +28,7 @@ public struct TVDetail: Decodable {
     }
     
     public struct LastEpisodeToAir: Decodable {
-        public let airDate: String
+        public let airDate: String?
         public let episodeNumber: Int
         public let id: Int
         public let name: String
@@ -91,7 +91,7 @@ public struct TVDetail: Decodable {
         public let name: String
         public let id: Int
         public let overview: String
-        public let airDate: String
+        public let airDate: String?
         public let episodeCount: Int
         public let posterPath: String?
         public let seasonNumber: Int
