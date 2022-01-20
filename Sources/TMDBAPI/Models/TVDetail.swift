@@ -131,7 +131,7 @@ public struct TVDetail: Decodable {
     public let seasons: [Season]
     public let backdropPath: String?
     public let episodeRuntime: [Int]
-    public let firstAirDate: String
+    public let firstAirDate: String?
     public let createdBy: [CreatedBy]
     public let inProduction: Bool
     public let lastAirDate: String?
