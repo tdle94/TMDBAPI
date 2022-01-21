@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct MultiSearch: Decodable {
-    struct Result: Decodable {
-        let posterPath: String
-        let title: String
-        let overview: String
+public struct MultiSearch: Decodable {
+    public struct Result: Decodable {
+        public let posterPath: String
+        public let title: String
+        public let overview: String
         
         enum CodingKeys: String, CodingKey {
             case title, overview
@@ -25,10 +25,10 @@ struct MultiSearch: Decodable {
             overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
         }
     }
-    let page: Int
-    let totalResults: Int
-    let totalPages: Int
-    let results: [Result]
+    public let page: Int
+    public let totalResults: Int
+    public let totalPages: Int
+    public let results: [Result]
     
     enum CodingKeys: String, CodingKey {
         case page, results
