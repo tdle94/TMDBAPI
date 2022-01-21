@@ -14,7 +14,7 @@ public struct MultiSearch: Decodable {
         public let title: String
         public let overview: String
         
-        var public posterLink: String {
+        public var posterLink: String {
             return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
         }
         
