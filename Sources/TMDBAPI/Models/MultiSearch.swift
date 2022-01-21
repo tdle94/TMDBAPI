@@ -10,9 +10,13 @@ import Foundation
 public struct MultiSearch: Decodable {
     public struct Result: Decodable, Identifiable {
         public let id: UUID = UUID()
-        public let posterPath: String
+        public let posterPath: String?
         public let title: String
         public let overview: String
+        
+        var public posterLink: String {
+            return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
+        }
         
         enum CodingKeys: String, CodingKey {
             case title, overview
