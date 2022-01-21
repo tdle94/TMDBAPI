@@ -14,7 +14,7 @@ public struct SearchDB {
 
     public init() { }
     
-    public func multiSearch(language: String, region: String, page: Int, includeAdult: Bool, query: String) async throws -> Result<MultiSearch, TMDBMessage> {
+    public func multiSearch(language: String = "en-US", region: String = "US", page: Int = 1, includeAdult: Bool = false, query: String) async throws -> Result<MultiSearch, TMDBMessage> {
         let urlRequest = Search.multiSearch(language: language, region: region, page: page, includeAdult: includeAdult, query: query).urlRequest
         return try await network.performURLRequest(urlRequest, type: MultiSearch.self)
     }

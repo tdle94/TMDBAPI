@@ -18,7 +18,7 @@ public struct MultiSearch: Decodable {
             case posterPath = "poster_path"
         }
 
-        init(from: Decoder) throws {
+        public init(from: Decoder) throws {
             let container = try from.container(keyedBy: CodingKeys.self)
             posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
             title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
