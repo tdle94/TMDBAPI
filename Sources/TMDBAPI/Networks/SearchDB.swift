@@ -9,7 +9,7 @@ import Foundation
 
 @available(iOS 15.0.0, *)
 @available(macOS 12.0.0, *)
-struct SearchDB {
+public struct SearchDB {
     var network: Network = NetworkOp()
 
     public init() { }
