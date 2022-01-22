@@ -8,7 +8,8 @@
 import Foundation
 
 public struct MultiSearch: Decodable {
-    public struct Result: Decodable, Hashable {
+    public struct Result: Decodable, Hashable, Identifiable {
+        public var id: UUID
         public let posterPath: String?
         public let title: String
         public let overview: String
