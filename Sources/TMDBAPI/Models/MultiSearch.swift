@@ -9,7 +9,7 @@ import Foundation
 
 public struct MultiSearch: Decodable {
     public struct Result: Decodable, Hashable, Identifiable {
-        public let id: Int
+        public let id: UUID = UUID()
         public let posterPath: String?
         public let title: String
         public let overview: String
@@ -28,7 +28,6 @@ public struct MultiSearch: Decodable {
             posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
             title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
             overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
-            id = 1
         }
     }
     public let page: Int
