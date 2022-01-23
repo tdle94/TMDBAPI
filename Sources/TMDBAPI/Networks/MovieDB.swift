@@ -24,7 +24,7 @@ public struct MovieDB {
         return try await network.performURLRequest(urlRequest, type: Credit.self)
     }
 
-    public func images(id: Int, language: String = "en-US") async throws -> Result<TMDBImage, TMDBMessage> {
+    public func images(id: Int, language: String? = nil) async throws -> Result<TMDBImage, TMDBMessage> {
         let urlRequest = Movie.images(id: id, language: language).urlRequest
         return try await network.performURLRequest(urlRequest, type: TMDBImage.self)
     }
