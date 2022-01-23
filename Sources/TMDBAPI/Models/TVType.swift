@@ -27,6 +27,10 @@ public struct TVType: Decodable {
             return "https://image.tmdb.org/t/p/w200" + (posterPath ?? "")
         }
 
+        public var displayObject: DisplayObject {
+            return DisplayObject(id: id, title: name, posterLink: posterLink)
+        }
+
         enum CodingKeys: String, CodingKey {
             case id, name, popularity, overview
             case posterPath = "poster_path"
@@ -51,4 +55,8 @@ public struct TVType: Decodable {
     public let results: [Result]
     public let totalPages: Int
     public let totalResults: Int
+
+    public var displayObjects: [DisplayObject] {
+        return results.compactMap { $0.displayObject }
+    }
 }
