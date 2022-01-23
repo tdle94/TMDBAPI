@@ -147,7 +147,11 @@ public struct TVDetail: Decodable {
     public let productionCompanies: [ProductionCompany]
     public let productionCountries: [ProductionCountry]
     public let spokenLanguages: [SpokenLanguage]
-    
+
+    var posterLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
+    }
+
     enum CodingKeys: String, CodingKey {
         case id, name, status, tagline, type, overview, popularity, homepage, genres, networks, seasons, languages
         case backdropPath = "backdrop_path"

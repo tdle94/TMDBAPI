@@ -31,6 +31,10 @@ public struct MovieDetail: Decodable {
     public let voteAverage: Double
     public let voteCount: Int
 
+    var posterLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
+    }
+
     enum CodingKeys: String, CodingKey {
         case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video
         case imdbId = "imdb_id"
