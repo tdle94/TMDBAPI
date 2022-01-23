@@ -10,7 +10,7 @@ import Foundation
 protocol MovieURLRequest {
     static func movieDetail(id: Int, language: String) -> URLRequest
     static func movieCredit(id: Int, language: String) -> URLRequest
-    static func movieImages(id: Int, language: String?) -> URLRequest
+    static func movieImages(id: Int, language: String) -> URLRequest
     static func movieKeywords(id: Int) -> URLRequest
     static func movieRecommendations(id: Int, language: String, page: Int) -> URLRequest
     static func similarMovies(id: Int, language: String, page: Int) -> URLRequest
@@ -39,9 +39,10 @@ extension URLRequest: MovieURLRequest {
         return URLRequest(url: components.url!)
     }
 
-    static func movieImages(id: Int, language: String?) -> URLRequest {
+    static func movieImages(id: Int, language: String) -> URLRequest {
         var components = urlComponent
         components.path = "/3/movie/\(id)/images"
+        components.queryItems?.append(URLQueryItem(name: "language", value: language))
         return URLRequest(url: components.url!)
     }
 

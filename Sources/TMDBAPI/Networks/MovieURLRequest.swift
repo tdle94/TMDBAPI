@@ -10,7 +10,7 @@ import Foundation
 enum Movie {
     case detail(id: Int, language: String)
     case credit(id: Int, language: String)
-    case images(id: Int, language: String?)
+    case images(id: Int, language: String)
     case keywords(id: Int)
     case recommendations(id: Int, language: String, page: Int)
     case similars(id: Int, language: String, page: Int)

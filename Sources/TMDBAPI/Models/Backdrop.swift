@@ -13,7 +13,7 @@ public struct Backdrop: Decodable {
     public let height: Int
     public let width: Int
     public let iso6391: String?
-    public let voteAverage: Int
+    public let voteAverage: Double
     public let voteCount: Int
     
     enum CodingKeys: String, CodingKey {
