@@ -12,11 +12,14 @@ public struct DisplayObject: Identifiable {
     public let titleWithYear: String
     public let backdropLink: String
     public let posterLink: String
+    public let overview: String
+    public var image: TMDBImage?
 
-    public init(id: Int, titleWithYear: String, backdropLink: String, posterLink: String) {
+    public init(id: Int, titleWithYear: String, backdropLink: String, posterLink: String, overview: String) {
         self.id = id
         self.titleWithYear = titleWithYear
         self.backdropLink = backdropLink
         self.posterLink = posterLink
+        self.overview = overview
     }
 }

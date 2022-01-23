@@ -34,7 +34,8 @@ public struct MovieDetail: Decodable {
         return DisplayObject(id: id,
                              titleWithYear: titleWithYear,
                              backdropLink: backdropLink,
-                             posterLink: posterLink)
+                             posterLink: posterLink,
+                             overview: overview)
     }
 
     enum CodingKeys: String, CodingKey {
