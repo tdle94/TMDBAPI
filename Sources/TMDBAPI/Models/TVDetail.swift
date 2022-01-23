@@ -148,7 +148,7 @@ public struct TVDetail: Decodable {
     public let productionCountries: [ProductionCountry]
     public let spokenLanguages: [SpokenLanguage]
 
-    var posterLink: String {
+    public var posterLink: String {
         return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
     }
 

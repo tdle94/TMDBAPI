@@ -31,7 +31,7 @@ public struct MovieDetail: Decodable {
     public let voteAverage: Double
     public let voteCount: Int
 
-    var posterLink: String {
+    public var posterLink: String {
         return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
     }
 
