@@ -9,7 +9,7 @@ import Foundation
 
 public struct MultiSearch: Decodable {
     public struct Result: Decodable, Hashable, Identifiable {
-        public let id: UUID = UUID()
+        public let id: Int
         public let posterPath: String?
         public let title: String
         public let overview: String
@@ -19,7 +19,7 @@ public struct MultiSearch: Decodable {
         }
         
         enum CodingKeys: String, CodingKey {
-            case title, overview
+            case id, title, overview
             case posterPath = "poster_path"
         }
 
