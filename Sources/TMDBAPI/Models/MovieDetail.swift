@@ -31,14 +31,6 @@ public struct MovieDetail: Decodable {
     public let voteAverage: Double
     public let voteCount: Int
 
-    public var posterLink: String {
-        return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
-    }
-
-    public var backdropLink: String {
-        return "https://image.tmdb.org/t/p/original/" + (backdropPath ?? "")
-    }
-
     enum CodingKeys: String, CodingKey {
         case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video
         case imdbId = "imdb_id"
@@ -51,6 +43,26 @@ public struct MovieDetail: Decodable {
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+    }
+}
+
+extension MovieDetail {
+    public var posterLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
+    }
+
+    public var backdropLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (backdropPath ?? "")
+    }
+
+    public var titleWithYear: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-mm-dd"
+        if let date = dateFormatter.date(from: releaseDate), let year = Calendar.current.dateComponents([.year], from: date).year {
+            return title + " (\(year))"
+        }
+
+        return ""
     }
 }
 
