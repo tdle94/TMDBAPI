@@ -28,6 +28,7 @@ public struct MultiSearch: Decodable {
             posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
             title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
             overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
+            id = try container.decode(Int.self, forKey: .id)
         }
     }
     public let page: Int
