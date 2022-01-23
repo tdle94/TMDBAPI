@@ -154,6 +154,7 @@ public struct TVDetail: Decodable {
 
     public var displayObject: DisplayObject {
         return DisplayObject(id: id,
+                             type: .tvshow,
                              titleWithYear: name,
                              title: name,
                              backdropLink: "",
