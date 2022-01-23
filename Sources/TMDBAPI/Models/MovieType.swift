@@ -9,7 +9,7 @@ import Foundation
 
 public struct MovieType: Decodable {
     public struct Result: Decodable, Identifiable  {
-        public let id = UUID()
+        public let id: Int
         public let adult: Bool
         public let backdropPath: String?
         public let posterPath: String?
@@ -29,7 +29,7 @@ public struct MovieType: Decodable {
         }
 
         enum CodingKeys: String, CodingKey {
-            case adult, overview, title, popularity, video
+            case id, adult, overview, title, popularity, video
             case backdropPath = "backdrop_path"
             case posterPath = "poster_path"
             case releaseDate = "release_date"
