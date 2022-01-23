@@ -9,27 +9,33 @@ import Foundation
 
 public struct MovieDetail: Decodable {
     public let id: Int
-    public let imdbId: String?
+    public let imdbId: String
     public let adult: Bool
-    public let backdropPath: String?
+    public let backdropPath: String
     public let genres: [Genre]
-    public let homepage: String?
+    public let homepage: String
     public let originalLanguage: String
     public let originalTitle: String
-    public let overview: String?
+    public let overview: String
     public let popularity: Double
-    public let posterPath: String?
+    public let posterPath: String
     public let productionCompanies: [ProductionCompany]
     public let productionCountries: [ProductionCountry]
     public let releaseDate: String
     public let revenue: Int
-    public let runtime: Int?
+    public let runtime: Int
     public let status: String
     public let tagline: String
     public let title: String
     public let video: Bool
     public let voteAverage: Double
     public let voteCount: Int
+    public var displayObject: DisplayObject {
+        return DisplayObject(id: id,
+                             titleWithYear: titleWithYear,
+                             backdropLink: backdropLink,
+                             posterLink: posterLink)
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video
@@ -44,15 +50,42 @@ public struct MovieDetail: Decodable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
     }
+
+    public init(from: Decoder) throws {
+        let container = try from.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(Int.self, forKey: .id)
+        imdbId = try container.decodeIfPresent(String.self, forKey: .imdbId) ?? ""
+        adult = try container.decodeIfPresent(Bool.self, forKey: .adult) ?? false
+        backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath) ?? ""
+        genres = try container.decodeIfPresent([Genre].self, forKey: .genres) ?? []
+        homepage = try container.decodeIfPresent(String.self, forKey: .homepage) ?? ""
+        originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage) ?? ""
+        originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle) ?? ""
+        overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
+        popularity = try container.decodeIfPresent(Double.self, forKey: .popularity) ?? 0
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
+        productionCompanies = try container.decodeIfPresent([ProductionCompany].self, forKey: .productionCompanies) ?? []
+        productionCountries = try container.decodeIfPresent([ProductionCountry].self, forKey: .productionCountries) ?? []
+        releaseDate = try container.decodeIfPresent(String.self, forKey: .releaseDate) ?? ""
+        revenue = try container.decodeIfPresent(Int.self, forKey: .revenue) ?? 0
+        runtime = try container.decodeIfPresent(Int.self, forKey: .runtime) ?? 0
+        status = try container.decodeIfPresent(String.self, forKey: .status) ?? ""
+        tagline = try container.decodeIfPresent(String.self, forKey: .tagline) ?? ""
+        title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+        video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
+        voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
+        voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
+    }
 }
 
 extension MovieDetail {
     public var posterLink: String {
-        return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
+        return "https://image.tmdb.org/t/p/original/" + posterPath
     }
 
     public var backdropLink: String {
-        return "https://image.tmdb.org/t/p/original/" + (backdropPath ?? "")
+        return "https://image.tmdb.org/t/p/original/" + backdropPath
     }
 
     public var titleWithYear: String {
