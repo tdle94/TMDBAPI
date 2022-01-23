@@ -9,7 +9,7 @@ import Foundation
 
 public struct Backdrop: Decodable {
     public let aspectRatio: Double
-    public let filePath: String
+    public let filePath: String?
     public let height: Int
     public let width: Int
     public let iso6391: String?
