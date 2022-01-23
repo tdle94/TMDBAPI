@@ -15,6 +15,7 @@ public struct DisplayObject: Identifiable {
     public let overview: String
     public let tagline: String
     public var image: TMDBImage?
+    public var displayImageLinks: [String] = []
 
     public init(id: Int, titleWithYear: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
         self.id = id
