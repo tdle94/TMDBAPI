@@ -18,14 +18,14 @@ public struct DisplayObject: Identifiable {
     public var image: TMDBImage?
     public var displayImageLinks: [String] = []
 
-    public init(id: Int, titleWithYear: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
+    public init(id: Int, titleWithYear: String, title: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
         self.id = id
         self.titleWithYear = titleWithYear
+        self.title = title
         self.backdropLink = backdropLink
         self.posterLink = posterLink
         self.overview = overview
         self.tagline = tagline
-        self.title = ""
     }
 
     public init(id: Int, title: String, posterLink: String) {

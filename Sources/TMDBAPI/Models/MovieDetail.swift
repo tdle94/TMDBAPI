@@ -34,6 +34,7 @@ public struct MovieDetail: Decodable {
     public var displayObject: DisplayObject {
         return DisplayObject(id: id,
                              titleWithYear: titleWithYear,
+                             title: originalTitle,
                              backdropLink: backdropLink,
                              posterLink: posterLink,
                              overview: overview,
