@@ -35,6 +35,10 @@ public struct MovieDetail: Decodable {
         return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
     }
 
+    public var backdropLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (backdropPath ?? "")
+    }
+
     enum CodingKeys: String, CodingKey {
         case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video
         case imdbId = "imdb_id"
