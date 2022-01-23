@@ -42,9 +42,6 @@ extension URLRequest: MovieURLRequest {
     static func movieImages(id: Int, language: String?) -> URLRequest {
         var components = urlComponent
         components.path = "/3/movie/\(id)/images"
-        if let language = language {
-            components.queryItems?.append(URLQueryItem(name: "language", value: language))
-        }
         return URLRequest(url: components.url!)
     }
 
