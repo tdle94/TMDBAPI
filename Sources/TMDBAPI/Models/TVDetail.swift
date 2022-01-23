@@ -152,6 +152,15 @@ public struct TVDetail: Decodable {
         return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
     }
 
+    public var displayObject: DisplayObject {
+        return DisplayObject(id: id,
+                             titleWithYear: name,
+                             backdropLink: "",
+                             posterLink: posterLink,
+                             overview: overview,
+                             tagline: tagline)
+    }
+
     enum CodingKeys: String, CodingKey {
         case id, name, status, tagline, type, overview, popularity, homepage, genres, networks, seasons, languages
         case backdropPath = "backdrop_path"

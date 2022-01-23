@@ -30,6 +30,7 @@ public struct MovieDetail: Decodable {
     public let video: Bool
     public let voteAverage: Double
     public let voteCount: Int
+
     public var displayObject: DisplayObject {
         return DisplayObject(id: id,
                              titleWithYear: titleWithYear,
