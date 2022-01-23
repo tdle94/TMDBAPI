@@ -10,6 +10,7 @@ import Foundation
 public struct DisplayObject: Identifiable {
     public let id: Int
     public let titleWithYear: String
+    public let title: String
     public let backdropLink: String
     public let posterLink: String
     public let overview: String
@@ -24,5 +25,16 @@ public struct DisplayObject: Identifiable {
         self.posterLink = posterLink
         self.overview = overview
         self.tagline = tagline
+        self.title = ""
+    }
+
+    public init(id: Int, title: String, posterLink: String) {
+        self.id = id
+        self.titleWithYear = ""
+        self.title = title
+        self.posterLink = posterLink
+        self.backdropLink = ""
+        self.overview = ""
+        self.tagline = ""
     }
 }

@@ -28,6 +28,10 @@ public struct MovieType: Decodable {
             return "https://image.tmdb.org/t/p/w200" + (posterPath ?? "")
         }
 
+        public var displayObject: DisplayObject {
+            return DisplayObject(id: id, title: title, posterLink: posterLink)
+        }
+
         enum CodingKeys: String, CodingKey {
             case id, adult, overview, title, popularity, video
             case backdropPath = "backdrop_path"
@@ -51,4 +55,8 @@ public struct MovieType: Decodable {
     public let results: [Result]
     public let totalPages: Int
     public let totalResults: Int
+
+    public var displayObjects: [DisplayObject] {
+        return results.compactMap { $0.displayObject }
+    }
 }
