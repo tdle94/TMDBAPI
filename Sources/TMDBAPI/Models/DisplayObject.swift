@@ -8,9 +8,9 @@
 import Foundation
 
 public struct DisplayObject: Identifiable {
-    public enum DisplayType {
-        case tvshow
-        case movie
+    public enum DisplayType: String {
+        case tvshow = "tv"
+        case movie = "movie"
     }
 
     public let id: Int
@@ -27,7 +27,7 @@ public struct DisplayObject: Identifiable {
     public var displayImageLinks: [String] = []
     public var displaySameObjects: [DisplayObject] = []
 
-    public init(id: Int, type: DisplayType, titleWithYear: String, title: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
+    public init(id: Int, type: DisplayType, titleWithYear: String = "", title: String, backdropLink: String = "", posterLink: String, overview: String = "", tagline: String = "") {
         self.id = id
         self.type = type
         self.titleWithYear = titleWithYear
@@ -36,16 +36,5 @@ public struct DisplayObject: Identifiable {
         self.posterLink = posterLink
         self.overview = overview
         self.tagline = tagline
-    }
-
-    public init(id: Int, type: DisplayType, title: String, posterLink: String) {
-        self.id = id
-        self.type = type
-        self.titleWithYear = ""
-        self.title = title
-        self.posterLink = posterLink
-        self.backdropLink = ""
-        self.overview = ""
-        self.tagline = ""
     }
 }
