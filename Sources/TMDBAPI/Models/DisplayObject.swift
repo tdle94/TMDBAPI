@@ -25,6 +25,7 @@ public struct DisplayObject: Identifiable {
     public var similars: [DisplayObject] = []
     public var recommends: [DisplayObject] = []
     public var displayImageLinks: [String] = []
+    public var displaySameObjects: [DisplayObject] = []
 
     public init(id: Int, type: DisplayType, titleWithYear: String, title: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
         self.id = id
