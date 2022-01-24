@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DisplayObject: Identifiable, Hashable {
+public struct DisplayObject: Identifiable {
     public enum DisplayType {
         case tvshow
         case movie
@@ -24,10 +24,7 @@ public struct DisplayObject: Identifiable, Hashable {
     public var image: TMDBImage?
     public var similars: [DisplayObject] = []
     public var recommends: [DisplayObject] = []
-
-    // Use to store data change when user pick different option
     public var displayImageLinks: [String] = []
-    public var displaySameObject: [DisplayObject] = []
 
     public init(id: Int, type: DisplayType, titleWithYear: String, title: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
         self.id = id
@@ -49,13 +46,5 @@ public struct DisplayObject: Identifiable, Hashable {
         self.backdropLink = ""
         self.overview = ""
         self.tagline = ""
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-
-    public static func == (lhs: DisplayObject, rhs: DisplayObject) -> Bool {
-        return lhs.id == rhs.id
     }
 }
