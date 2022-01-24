@@ -22,9 +22,12 @@ public struct DisplayObject: Identifiable {
     public let tagline: String
     public let type: DisplayType
     public var image: TMDBImage?
-    public var displayImageLinks: [String] = []
     public var similars: [DisplayObject] = []
     public var recommends: [DisplayObject] = []
+
+    // Use to store data change when user pick different option
+    public var displayImageLinks: [String] = []
+    public var displaySameObject: [DisplayObject] = []
 
     public init(id: Int, type: DisplayType, titleWithYear: String, title: String, backdropLink: String, posterLink: String, overview: String, tagline: String) {
         self.id = id
