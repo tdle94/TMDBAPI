@@ -46,7 +46,7 @@ public struct MultiSearch: Decodable {
     public let totalPages: Int
     public let results: [Result]
 
-    var displayObjects: [DisplayObject] {
+    public var displayObjects: [DisplayObject] {
         return results.compactMap { $0.displayObject }
     }
 
