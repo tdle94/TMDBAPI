@@ -47,7 +47,7 @@ public struct MultiSearch: Decodable {
     public let results: [Result]
 
     public var displayObjects: [DisplayObject] {
-        return results.compactMap { $0.displayObject }
+        return results.compactMap { $0.displayObject }.filter { !$0.title.isEmpty }
     }
 
     enum CodingKeys: String, CodingKey {
