@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DisplayObject: Identifiable {
+public struct DisplayObject: Identifiable, Hashable {
     public enum DisplayType {
         case tvshow
         case movie
@@ -49,5 +49,13 @@ public struct DisplayObject: Identifiable {
         self.backdropLink = ""
         self.overview = ""
         self.tagline = ""
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    public static func == (lhs: DisplayObject, rhs: DisplayObject) -> Bool {
+        return lhs.id == rhs.id
     }
 }
