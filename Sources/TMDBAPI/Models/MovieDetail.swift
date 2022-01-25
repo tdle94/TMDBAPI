@@ -12,6 +12,7 @@ public struct MovieDetail: Decodable {
     public let imdbId: String
     public let adult: Bool
     public let backdropPath: String
+    public let budget: Int
     public let genres: [Genre]
     public let homepage: String
     public let originalLanguage: String
@@ -43,7 +44,7 @@ public struct MovieDetail: Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video
+        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget
         case imdbId = "imdb_id"
         case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
@@ -63,6 +64,7 @@ public struct MovieDetail: Decodable {
         imdbId = try container.decodeIfPresent(String.self, forKey: .imdbId) ?? ""
         adult = try container.decodeIfPresent(Bool.self, forKey: .adult) ?? false
         backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath) ?? ""
+        budget = try container.decodeIfPresent(Int.self, forKey: .budget) ?? 0
         genres = try container.decodeIfPresent([Genre].self, forKey: .genres) ?? []
         homepage = try container.decodeIfPresent(String.self, forKey: .homepage) ?? ""
         originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage) ?? ""
@@ -75,7 +77,7 @@ public struct MovieDetail: Decodable {
         releaseDate = try container.decodeIfPresent(String.self, forKey: .releaseDate) ?? ""
         revenue = try container.decodeIfPresent(Int.self, forKey: .revenue) ?? 0
         runtime = try container.decodeIfPresent(Int.self, forKey: .runtime) ?? 0
-        status = try container.decodeIfPresent(String.self, forKey: .status) ?? ""
+        status = try container.decodeIfPresent(String.self, forKey: .status) ?? "-"
         tagline = try container.decodeIfPresent(String.self, forKey: .tagline) ?? ""
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
         video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
