@@ -11,6 +11,7 @@ public struct DisplayObject: Identifiable {
     public enum DisplayType: String {
         case tvshow = "tv"
         case movie = "movie"
+        case people = "people"
     }
 
     public let id: Int
