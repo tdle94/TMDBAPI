@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Cast: Decodable {
+public struct Cast: Decodable, Identifiable {
     public let adult: Bool
     public let gender: Int?
     public let id: Int
@@ -20,6 +20,10 @@ public struct Cast: Decodable {
     public let character: String
     public let creditId: String
     public let order: Int
+
+    public var profileLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (profilePath ?? "")
+    }
     
     enum CodingKeys: String, CodingKey {
         case adult, gender, id, name, popularity, character, order

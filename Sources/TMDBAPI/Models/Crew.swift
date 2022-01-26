@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Crew: Decodable {
+public struct Crew: Decodable, Identifiable {
     public let adult: Bool
     public let gender: Int?
     public let id: Int
@@ -19,7 +19,11 @@ public struct Crew: Decodable {
     public let creditId: String
     public let department: String
     public let job: String
-    
+
+    public var profileLink: String {
+        return "https://image.tmdb.org/t/p/original/" + (profilePath ?? "")
+    }
+
     enum CodingKeys: String, CodingKey {
         case adult, gender, id, name, popularity, department, job
         case knownForDepartment = "known_for_department"
