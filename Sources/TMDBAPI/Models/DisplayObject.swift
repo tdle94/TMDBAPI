@@ -28,6 +28,7 @@ public struct DisplayObject: Identifiable {
     public var totalRecommends: Int = 0 // recommend is paginated
     public var displayImageLinks: [String] = []
     public var displaySameObjects: [DisplayObject] = []
+    public var credit: Credit?
 
     public init(id: Int, type: DisplayType, titleWithYear: String = "", title: String, backdropLink: String = "", posterLink: String, overview: String = "", tagline: String = "") {
         self.id = id
