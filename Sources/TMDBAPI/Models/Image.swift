@@ -30,10 +30,10 @@ public struct TMDBImage: Decodable {
         posters = []
     }
     
-    public init(from: Decoder) throws {
-        let container = try from.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
-        backdrops = try container.decodeIfPresent([Backdrop].self, forKey: .backdrops) ?? []
-        posters = try container.decodeIfPresent([Backdrop].self, forKey: .posters) ?? []
-    }
+//    public init(from: Decoder) throws {
+//        let container = try from.container(keyedBy: CodingKeys.self)
+//        id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+//        backdrops = try container.decodeIfPresent([Backdrop].self, forKey: .backdrops) ?? []
+//        posters = try container.decodeIfPresent([Backdrop].self, forKey: .posters) ?? []
+//    }
 }
