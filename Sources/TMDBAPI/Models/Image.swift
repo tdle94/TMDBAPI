@@ -29,6 +29,7 @@ public struct TMDBImage: Decodable {
         id = -1
         backdrops = []
         posters = []
+        logos = []
     }
     
     public init(from: Decoder) throws {
