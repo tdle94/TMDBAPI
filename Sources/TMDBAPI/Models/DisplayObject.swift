@@ -22,14 +22,14 @@ public struct DisplayObject: Identifiable {
     public let overview: String
     public let tagline: String
     public let type: DisplayType
-    public var image: TMDBImage?
-    public var similars: [DisplayObject] = []
-    public var recommends: [DisplayObject] = []
+    public var images: TMDBImage = TMDBImage()
+    public var similar: [DisplayObject] = []
+    public var recommendations: [DisplayObject] = []
     public var totalSimilars: Int = 0 // similar is paginated
     public var totalRecommends: Int = 0 // recommend is paginated
     public var displayImageLinks: [String] = []
     public var displaySameObjects: [DisplayObject] = []
-    public var credit: Credit?
+    public var credits: Credit = Credit()
 
     public init(id: Int, type: DisplayType, titleWithYear: String = "", title: String, backdropLink: String = "", posterLink: String, overview: String = "", tagline: String = "") {
         self.id = id
