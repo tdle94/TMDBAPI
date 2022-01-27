@@ -31,7 +31,7 @@ public struct MovieDetail: Decodable {
     public let video: Bool
     public let voteAverage: Double
     public let voteCount: Int
-    public let image: TMDBImage
+    public let images: TMDBImage
     public let similars: MovieType
     public let recommends: MovieType
 
