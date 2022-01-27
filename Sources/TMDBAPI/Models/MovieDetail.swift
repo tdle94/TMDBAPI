@@ -34,6 +34,7 @@ public struct MovieDetail: Decodable {
     public let images: TMDBImage
     public let similar: MovieType
     public let recommendations: MovieType
+    public let credits: Credit
 
     public var displayObject: DisplayObject {
         return DisplayObject(id: id,
@@ -47,7 +48,7 @@ public struct MovieDetail: Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget, images, similar, recommendations
+        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget, images, similar, recommendations, credits
         case imdbId = "imdb_id"
         case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
@@ -89,6 +90,7 @@ public struct MovieDetail: Decodable {
         images = try container.decodeIfPresent(TMDBImage.self, forKey: .images) ?? .init()
         similar = try container.decodeIfPresent(MovieType.self, forKey: .similar) ?? .init()
         recommendations = try container.decodeIfPresent(MovieType.self, forKey: .recommendations) ?? .init()
+        credits = try container.decodeIfPresent(Credit.self, forKey: .credits) ?? .init()
     }
 }
 

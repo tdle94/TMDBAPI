@@ -25,4 +25,10 @@ public struct Credit: Decodable {
     enum CodingKeys: String, CodingKey {
         case id, cast, crew
     }
+
+    public init() {
+        id = -1
+        cast = []
+        crew = []
+    }
 }
