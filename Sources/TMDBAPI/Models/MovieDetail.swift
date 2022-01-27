@@ -50,7 +50,7 @@ public struct MovieDetail: Decodable {
         displayObj.recommendations = recommendations.displayObjects
         displayObj.images = images
         displayObj.totalSimilars = similar.totalResults
-        displayObj.totalRecommends = similar.totalResults
+        displayObj.totalRecommends = recommendations.totalResults
         displayObj.displayImageLinks = Array(images.backdropLinks.prefix(5))
         displayObj.displaySameObjects = recommendations.displayObjects
         return displayObj
