@@ -31,7 +31,7 @@ public struct MovieDetail: Decodable {
     public let video: Bool
     public let voteAverage: Double
     public let voteCount: Int
-    public let image: TMDBImage
+    public let images: TMDBImage
     public let similar: MovieType
     public let recommendations: MovieType
     public let credits: Credit
@@ -48,16 +48,16 @@ public struct MovieDetail: Decodable {
         displayObj.credits = credits
         displayObj.similar = similar.displayObjects
         displayObj.recommendations = recommendations.displayObjects
-        displayObj.images = image
+        displayObj.images = images
         displayObj.totalSimilars = similar.totalResults
         displayObj.totalRecommends = similar.totalResults
-        displayObj.displayImageLinks = Array(image.backdropLinks.prefix(5))
+        displayObj.displayImageLinks = Array(images.backdropLinks.prefix(5))
         displayObj.displaySameObjects = recommendations.displayObjects
         return displayObj
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget, image, similar, recommendations, credits
+        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget, images, similar, recommendations, credits
         case imdbId = "imdb_id"
         case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
@@ -96,7 +96,7 @@ public struct MovieDetail: Decodable {
         video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
         voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
         voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
-        image = try container.decodeIfPresent(TMDBImage.self, forKey: .image) ?? .init()
+        images = try container.decodeIfPresent(TMDBImage.self, forKey: .images) ?? .init()
         similar = try container.decodeIfPresent(MovieType.self, forKey: .similar) ?? .init()
         recommendations = try container.decodeIfPresent(MovieType.self, forKey: .recommendations) ?? .init()
         credits = try container.decodeIfPresent(Credit.self, forKey: .credits) ?? .init()
