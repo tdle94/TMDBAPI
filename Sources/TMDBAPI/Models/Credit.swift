@@ -31,4 +31,11 @@ public struct Credit: Decodable {
         cast = []
         crew = []
     }
+
+    public init(from: Decoder) throws {
+        let container = try from.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        cast = try container.decodeIfPresent([Cast].self, forKey: .cast) ?? []
+        crew = try container.decodeIfPresent([Crew].self, forKey: .crew) ?? []
+    }
 }
