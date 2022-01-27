@@ -29,6 +29,7 @@ extension URLRequest: MovieURLRequest {
         var components = urlComponent
         components.path = "/3/movie/\(id)"
         components.queryItems?.append(URLQueryItem(name: "language", value: language))
+        components.queryItems?.append(URLQueryItem(name: "append_to_response", value: "images,similars,recommends"))
         return URLRequest(url: components.url!)
     }
 
