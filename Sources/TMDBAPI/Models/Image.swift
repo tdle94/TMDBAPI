@@ -8,7 +8,6 @@
 import Foundation
 
 public struct TMDBImage: Decodable {
-    public let id: Int
     public let backdrops: [Backdrop]
     public let posters: [Backdrop]
     public let logos: [Backdrop]
@@ -22,11 +21,10 @@ public struct TMDBImage: Decodable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, backdrops, posters, logos
+        case backdrops, posters, logos
     }
 
     public init() {
-        id = -1
         backdrops = []
         posters = []
         logos = []
@@ -34,7 +32,6 @@ public struct TMDBImage: Decodable {
     
     public init(from: Decoder) throws {
         let container = try from.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
         backdrops = try container.decodeIfPresent([Backdrop].self, forKey: .backdrops) ?? []
         posters = try container.decodeIfPresent([Backdrop].self, forKey: .posters) ?? []
         logos = try container.decodeIfPresent([Backdrop].self, forKey: .logos) ?? []
