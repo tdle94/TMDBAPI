@@ -31,9 +31,9 @@ public struct MovieDetail: Decodable {
     public let video: Bool
     public let voteAverage: Double
     public let voteCount: Int
-    public let images: TMDBImage?
-    public let similar: MovieType?
-    public let recommendations: MovieType?
+    public let images: TMDBImage
+    public let similar: MovieType
+    public let recommendations: MovieType
 
     public var displayObject: DisplayObject {
         return DisplayObject(id: id,
@@ -86,9 +86,9 @@ public struct MovieDetail: Decodable {
         video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
         voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
         voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
-        images = try container.decodeIfPresent(TMDBImage.self, forKey: .images)
-        similar = try container.decodeIfPresent(MovieType.self, forKey: .similar)
-        recommendations = try container.decodeIfPresent(MovieType.self, forKey: .recommendations)
+        images = try container.decodeIfPresent(TMDBImage.self, forKey: .images) ?? .init()
+        similar = try container.decodeIfPresent(MovieType.self, forKey: .similar) ?? .init()
+        recommendations = try container.decodeIfPresent(MovieType.self, forKey: .recommendations) ?? .init()
     }
 }
 
