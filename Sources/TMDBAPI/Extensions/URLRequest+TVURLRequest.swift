@@ -35,6 +35,7 @@ extension URLRequest: TVURLRequest {
         var components = urlComponent
         components.path = "/3/tv/\(id)/credits"
         components.queryItems?.append(URLQueryItem(name: "language", value: language))
+        components.queryItems?.append(URLQueryItem(name: "append_to_response", value: "credits,images,similar,recommendations"))
         return URLRequest(url: components.url!)
     }
 

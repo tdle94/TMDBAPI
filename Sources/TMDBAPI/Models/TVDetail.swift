@@ -28,14 +28,14 @@ public struct TVDetail: Decodable {
     }
     
     public struct LastEpisodeToAir: Decodable {
-        public let airDate: String?
+        public let airDate: String
         public let episodeNumber: Int
         public let id: Int
         public let name: String
         public let overview: String
         public let productionCode: String
         public let seasonNumber: Int
-        public let stillPath: String?
+        public let stillPath: String
         public let voteAverage: Double
         public let voteCount: Int
         
@@ -49,18 +49,52 @@ public struct TVDetail: Decodable {
             case voteAverage = "vote_average"
             case voteCount = "vote_count"
         }
+        
+        public init(from: Decoder) throws {
+            let container = try from.container(keyedBy: CodingKeys.self)
+            airDate = try container.decodeIfPresent(String.self, forKey: .airDate) ?? ""
+            episodeNumber = try container.decodeIfPresent(Int.self, forKey: .episodeNumber) ?? -1
+            id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+            name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+            overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
+            productionCode = try container.decodeIfPresent(String.self, forKey: .productionCode) ?? ""
+            seasonNumber = try container.decodeIfPresent(Int.self, forKey: .seasonNumber) ?? -1
+            stillPath = try container.decodeIfPresent(String.self, forKey: .stillPath) ?? ""
+            voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
+            voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
+        }
+        
+        public init() {
+            airDate = ""
+            episodeNumber = -1
+            id = -1
+            name =  ""
+            overview = ""
+            productionCode = ""
+            seasonNumber = -1
+            stillPath = ""
+            voteAverage = 0
+            voteCount = 0
+        }
     }
     
     public struct Network: Decodable {
         public let id: Int
         public let name: String
-        public let logoPath: String?
+        public let logoPath: String
         public let originCountry: String
         
         enum CodingKeys: String, CodingKey {
             case id, name
             case logoPath = "logo_path"
             case originCountry = "origin_country"
+        }
+        
+        public init() {
+            id = -1
+            name = ""
+            logoPath = ""
+            originCountry = ""
         }
     }
     
@@ -121,7 +155,7 @@ public struct TVDetail: Decodable {
     public let name: String
     public let status: String
     public let tagline: String
-    public let type: StringLiteralType
+    public let type: String
     public let overview: String
     public let popularity: Double
     public let languages: [String]
@@ -129,42 +163,51 @@ public struct TVDetail: Decodable {
     public let genres: [Genres]
     public let networks: [Network]
     public let seasons: [Season]
-    public let backdropPath: String?
+    public let backdropPath: String
     public let episodeRuntime: [Int]
-    public let firstAirDate: String?
+    public let firstAirDate: String
     public let createdBy: [CreatedBy]
     public let inProduction: Bool
-    public let lastAirDate: String?
-    public let lastEpisodeToAir: LastEpisodeToAir?
+    public let lastAirDate: String
+    public let lastEpisodeToAir: LastEpisodeToAir
     public let numberOfEpisodes: Int
     public let numberOfSeasons: Int
     public let originCountry: [String]
     public let originalLanguage: String
     public let originalName: String
-    public let posterPath: String?
+    public let posterPath: String
     public let voteAverage: Double
     public let voteCount: Int
     public let productionCompanies: [ProductionCompany]
     public let productionCountries: [ProductionCountry]
     public let spokenLanguages: [SpokenLanguage]
+    public let images: TMDBImage
+    public let similar: TVType
+    public let recommendations: TVType
+    public let credits: Credit
 
     public var posterLink: String {
-        return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
+        return "https://image.tmdb.org/t/p/original/" + posterPath
     }
 
     public var displayObject: DisplayObject {
-        return DisplayObject(id: id,
-                             type: .tvshow,
-                             titleWithYear: name,
-                             title: name,
-                             backdropLink: "",
-                             posterLink: posterLink,
-                             overview: overview,
-                             tagline: tagline)
+        var displayObj = DisplayObject(id: id,
+                                       type: .tvshow,
+                                       titleWithYear: name,
+                                       title: name,
+                                       backdropLink: "",
+                                       posterLink: posterLink,
+                                       overview: overview,
+                                       tagline: tagline)
+        displayObj.images = images
+        displayObj.similar = similar.displayObjects
+        displayObj.recommendations = recommendations.displayObjects
+        displayObj.credits = credits
+        return displayObj
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, name, status, tagline, type, overview, popularity, homepage, genres, networks, seasons, languages
+        case id, name, status, tagline, type, overview, popularity, homepage, genres, networks, seasons, languages, images, similar, recommendations, credits
         case backdropPath = "backdrop_path"
         case episodeRuntime = "episode_run_time"
         case firstAirDate = "first_air_date"
@@ -183,5 +226,44 @@ public struct TVDetail: Decodable {
         case productionCompanies = "production_companies"
         case productionCountries = "production_countries"
         case spokenLanguages = "spoken_languages"
+    }
+
+    public init(from: Decoder) throws {
+        let container = try from.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(Int.self, forKey: .id)
+        backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath) ?? ""
+        type = try container.decodeIfPresent(String.self, forKey: .type) ?? ""
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        homepage = try container.decodeIfPresent(String.self, forKey: .homepage) ?? ""
+        originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage) ?? ""
+        overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
+        firstAirDate = try container.decodeIfPresent(String.self, forKey: .firstAirDate) ?? ""
+        lastAirDate = try container.decodeIfPresent(String.self, forKey: .lastAirDate) ?? ""
+        popularity = try container.decodeIfPresent(Double.self, forKey: .popularity) ?? 0
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
+        productionCompanies = try container.decodeIfPresent([ProductionCompany].self, forKey: .productionCompanies) ?? []
+        productionCountries = try container.decodeIfPresent([ProductionCountry].self, forKey: .productionCountries) ?? []
+        status = try container.decodeIfPresent(String.self, forKey: .status) ?? "-"
+        tagline = try container.decodeIfPresent(String.self, forKey: .tagline) ?? ""
+        voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
+        voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
+        images = try container.decodeIfPresent(TMDBImage.self, forKey: .images) ?? .init()
+        similar = try container.decodeIfPresent(TVType.self, forKey: .similar) ?? .init()
+        recommendations = try container.decodeIfPresent(TVType.self, forKey: .recommendations) ?? .init()
+        credits = try container.decodeIfPresent(Credit.self, forKey: .credits) ?? .init()
+        originCountry = try container.decodeIfPresent([String].self, forKey: .originCountry) ?? []
+        originalName = try container.decodeIfPresent(String.self, forKey: .originalName) ?? ""
+        numberOfSeasons = try container.decodeIfPresent(Int.self, forKey: .numberOfSeasons) ?? 0
+        numberOfEpisodes = try container.decodeIfPresent(Int.self, forKey: .numberOfEpisodes) ?? 0
+        spokenLanguages = try container.decodeIfPresent([SpokenLanguage].self, forKey: .spokenLanguages) ?? []
+        lastEpisodeToAir = try container.decodeIfPresent(LastEpisodeToAir.self, forKey: .lastEpisodeToAir) ?? .init()
+        episodeRuntime = try container.decodeIfPresent([Int].self, forKey: .episodeRuntime) ?? []
+        genres = try container.decodeIfPresent([Genres].self, forKey: .genres) ?? []
+        createdBy = try container.decodeIfPresent([CreatedBy].self, forKey: .createdBy) ?? []
+        seasons = try container.decodeIfPresent([Season].self, forKey: .seasons) ?? []
+        networks = try container.decodeIfPresent([Network].self, forKey: .networks) ?? []
+        languages = try container.decodeIfPresent([String].self, forKey: .languages) ?? []
+        inProduction = try container.decodeIfPresent(Bool.self, forKey: .inProduction) ?? false
     }
 }
