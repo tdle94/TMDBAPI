@@ -8,7 +8,7 @@
 import Foundation
 
 public struct TMDBImage: Decodable {
-    public let id: Int
+    public let id: Int?
     public let backdrops: [Backdrop]
     public let posters: [Backdrop]
 
