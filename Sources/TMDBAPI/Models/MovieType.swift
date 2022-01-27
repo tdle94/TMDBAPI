@@ -59,4 +59,11 @@ public struct MovieType: Decodable {
     public var displayObjects: [DisplayObject] {
         return results.compactMap { $0.displayObject }
     }
+
+    public init() {
+        page = -1
+        results = []
+        totalPages = -1
+        totalResults = -1
+    }
 }

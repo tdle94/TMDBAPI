@@ -23,6 +23,12 @@ public struct TMDBImage: Decodable {
     enum CodingKeys: String, CodingKey {
         case id, backdrops, posters
     }
+
+    public init() {
+        id = -1
+        backdrops = []
+        posters = []
+    }
     
     public init(from: Decoder) throws {
         let container = try from.container(keyedBy: CodingKeys.self)
