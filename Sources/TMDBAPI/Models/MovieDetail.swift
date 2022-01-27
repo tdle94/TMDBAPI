@@ -47,7 +47,7 @@ public struct MovieDetail: Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget, image, similars, recommends
+        case id, adult, genres, homepage, overview, popularity, revenue, runtime, status, tagline, title, video, budget, images, similars, recommends
         case imdbId = "imdb_id"
         case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
@@ -86,7 +86,7 @@ public struct MovieDetail: Decodable {
         video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
         voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
         voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
-        image = try container.decode(TMDBImage.self, forKey: .image)
+        images = try container.decode(TMDBImage.self, forKey: .image)
         similars = try container.decode(MovieType.self, forKey: .similars)
         recommends = try container.decode(MovieType.self, forKey: .recommends)
     }
