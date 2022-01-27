@@ -86,7 +86,7 @@ public struct MovieDetail: Decodable {
         video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
         voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0
         voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
-        images = try container.decode(TMDBImage.self, forKey: .image)
+        images = try container.decode(TMDBImage.self, forKey: .images)
         similars = try container.decode(MovieType.self, forKey: .similars)
         recommends = try container.decode(MovieType.self, forKey: .recommends)
     }
