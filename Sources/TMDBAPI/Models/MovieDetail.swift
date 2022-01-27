@@ -49,6 +49,8 @@ public struct MovieDetail: Decodable {
         displayObj.similar = similar.displayObjects
         displayObj.recommendations = recommendations.displayObjects
         displayObj.images = images
+        displayObj.totalSimilars = similar.totalResults
+        displayObj.totalRecommends = similar.totalResults
         return displayObj
     }
 
