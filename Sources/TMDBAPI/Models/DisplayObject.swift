@@ -61,7 +61,7 @@ public struct DisplayDetail: Display, Identifiable {
     
     public var credits: Credit
     
-    public var entitySelection: EntitySelectionType = .similars
+    public var entitySelection: EntitySelectionType = .recommendation
     
     public var imageSelection: ImageSelectionType = .backdrops
     
