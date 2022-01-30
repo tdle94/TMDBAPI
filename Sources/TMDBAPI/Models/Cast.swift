@@ -26,7 +26,7 @@ public struct Cast: Decodable, Identifiable {
     }
     
     public var displayObject: QuickDisplay {
-        return EntityTypeDisplay(id: id, title: originalName, subtitle: character, posterLink: profileLink)
+        return EntityTypeDisplay(id: id, title: originalName, subtitle: character, posterLink: profileLink, type: .person)
     }
     
     enum CodingKeys: String, CodingKey {

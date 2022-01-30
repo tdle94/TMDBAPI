@@ -19,7 +19,7 @@ public struct MultiSearch: Decodable {
         }
         
         public var displayObject: QuickDisplay {
-            return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink)
+            return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink, type: .init(rawValue: mediaType) ?? .movie)
         }
         
         enum CodingKeys: String, CodingKey {

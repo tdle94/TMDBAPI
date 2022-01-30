@@ -28,7 +28,7 @@ public struct TVType: Decodable {
         }
 
         public var displayObject: EntityTypeDisplay {
-            return EntityTypeDisplay(id: id, title: name, subtitle: overview, posterLink: posterLink)
+            return EntityTypeDisplay(id: id, title: name, subtitle: overview, posterLink: posterLink, type: .tvshow)
         }
 
         enum CodingKeys: String, CodingKey {

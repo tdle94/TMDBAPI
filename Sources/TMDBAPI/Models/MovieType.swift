@@ -29,7 +29,7 @@ public struct MovieType: Decodable {
         }
 
         public var displayObject: EntityTypeDisplay {
-            return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink)
+            return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink, type: .movie)
         }
 
         enum CodingKeys: String, CodingKey {

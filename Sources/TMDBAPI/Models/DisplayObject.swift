@@ -112,6 +112,12 @@ extension DisplayDetail {
 }
 
 public class EntityTypeDisplay: QuickDisplay, Identifiable {
+    public enum DisplayType: String {
+        case movie = "movie"
+        case tvshow = "tv"
+        case person = "person"
+    }
+
     public var id: Int
     
     public var title: String
@@ -120,10 +126,13 @@ public class EntityTypeDisplay: QuickDisplay, Identifiable {
     
     public var posterLink: String
     
-    public init(id: Int, title: String, subtitle: String, posterLink: String) {
+    public var type: DisplayType
+    
+    public init(id: Int, title: String, subtitle: String, posterLink: String, type: DisplayType) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
         self.posterLink = posterLink
+        self.type = type
     }
 }

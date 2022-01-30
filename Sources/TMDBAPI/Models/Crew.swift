@@ -25,7 +25,7 @@ public struct Crew: Decodable, Identifiable {
     }
 
     public var displayObject: QuickDisplay {
-        return EntityTypeDisplay(id: id, title: originalName, subtitle: job, posterLink: profileLink)
+        return EntityTypeDisplay(id: id, title: originalName, subtitle: job, posterLink: profileLink, type: .person)
     }
 
     enum CodingKeys: String, CodingKey {
