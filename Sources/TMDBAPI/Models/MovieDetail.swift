@@ -36,7 +36,7 @@ public struct MovieDetail: Decodable {
     public let recommendations: MovieType
     public let credits: Credit
 
-    public var displayObject: QuickDisplay {
+    public var displayObject: DisplayDetail {
         let displayDetail = DisplayDetail(id: id,
                                           title: title,
                                           overview: overview,
