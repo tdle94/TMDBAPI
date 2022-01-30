@@ -37,15 +37,18 @@ public struct MovieDetail: Decodable {
     public let credits: Credit
 
     public var displayObject: QuickDisplay {
-        return DisplayDetail(id: id,
-                             title: title,
-                             overview: overview,
-                             tagline: tagline,
-                             backdropLink: backdropLink,
-                             posterLink: posterLink,
-                             releaseDate: releaseDate,
-                             credits: credits,
-                             images: images)
+        let displayDetail = DisplayDetail(id: id,
+                                          title: title,
+                                          overview: overview,
+                                          tagline: tagline,
+                                          backdropLink: backdropLink,
+                                          posterLink: posterLink,
+                                          releaseDate: releaseDate,
+                                          credits: credits,
+                                          images: images)
+        displayDetail.recommendations = recommendations.displayObjects
+        displayDetail.similars = similar.displayObjects
+        return displayDetail
     }
 
     enum CodingKeys: String, CodingKey {

@@ -195,15 +195,18 @@ public struct TVDetail: Decodable {
     }
 
     public var displayObject: QuickDisplay {
-        return DisplayDetail(id: id,
-                             title: name,
-                             overview: overview,
-                             tagline: tagline,
-                             backdropLink: backdropLink,
-                             posterLink: posterLink,
-                             releaseDate: firstAirDate,
-                             credits: credits,
-                             images: images)
+        let displayDetail = DisplayDetail(id: id,
+                                          title: name,
+                                          overview: overview,
+                                          tagline: tagline,
+                                          backdropLink: backdropLink,
+                                          posterLink: posterLink,
+                                          releaseDate: firstAirDate,
+                                          credits: credits,
+                                          images: images)
+        displayDetail.similars = similar.displayObjects
+        displayDetail.recommendations = recommendations.displayObjects
+        return displayDetail
     }
 
     enum CodingKeys: String, CodingKey {

@@ -65,11 +65,11 @@ public class DisplayDetail: Display, Identifiable {
     
     public var imageSelection: ImageSelectionType = .backdrops
     
-    public var similars: [Display] = []
+    public var similars: [QuickDisplay] = []
 
-    public var recommendations: [Display] = []
+    public var recommendations: [QuickDisplay] = []
     
-    public var entityToDisplay: [Display] {
+    public var entityToDisplay: [QuickDisplay] {
         return entitySelection == .similars ? similars : recommendations
     }
     
