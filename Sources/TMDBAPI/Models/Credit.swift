@@ -18,7 +18,7 @@ public struct Credit: Decodable {
     public let crew: [Crew]
     public var displayType: DisplayType = .cast
 
-    public var displayObjects: [QuickDisplay] {
+    public var displayObjects: [EntityTypeDisplay] {
         return displayType == .cast ? cast.compactMap { $0.displayObject } : crew.compactMap { $0.displayObject }
     }
 
