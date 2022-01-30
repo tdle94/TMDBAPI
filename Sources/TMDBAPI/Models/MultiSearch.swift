@@ -18,7 +18,7 @@ public struct MultiSearch: Decodable {
             return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
         }
         
-        public var displayObject: QuickDisplay {
+        public var displayObject: EntityTypeDisplay {
             return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink, type: .init(rawValue: mediaType) ?? .movie)
         }
         
