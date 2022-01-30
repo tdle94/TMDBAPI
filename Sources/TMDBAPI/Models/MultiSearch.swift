@@ -42,7 +42,7 @@ public struct MultiSearch: Decodable {
     public let totalPages: Int
     public let results: [Result]
 
-    public var displayObjects: [QuickDisplay] {
+    public var displayObjects: [EntityTypeDisplay] {
         return results.compactMap { $0.displayObject }.filter { !$0.title.isEmpty }
     }
 
