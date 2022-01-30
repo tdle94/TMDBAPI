@@ -41,7 +41,7 @@ extension Display {
     }
 }
 
-public class DisplayDetail: Display, Identifiable {
+public struct DisplayDetail: Display, Identifiable {
     
     public var id: Int
     
@@ -111,7 +111,7 @@ extension DisplayDetail {
     }
 }
 
-public class EntityTypeDisplay: QuickDisplay, Identifiable {
+public struct EntityTypeDisplay: QuickDisplay, Identifiable {
     public enum DisplayType: String {
         case movie = "movie"
         case tvshow = "tv"

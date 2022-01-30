@@ -37,7 +37,7 @@ public struct MovieDetail: Decodable {
     public let credits: Credit
 
     public var displayObject: DisplayDetail {
-        let displayDetail = DisplayDetail(id: id,
+        var displayDetail = DisplayDetail(id: id,
                                           title: title,
                                           overview: overview,
                                           tagline: tagline,

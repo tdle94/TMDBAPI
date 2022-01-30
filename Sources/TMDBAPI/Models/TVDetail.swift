@@ -195,7 +195,7 @@ public struct TVDetail: Decodable {
     }
 
     public var displayObject: DisplayDetail {
-        let displayDetail = DisplayDetail(id: id,
+        var displayDetail = DisplayDetail(id: id,
                                           title: name,
                                           overview: overview,
                                           tagline: tagline,
