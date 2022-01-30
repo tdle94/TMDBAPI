@@ -206,6 +206,8 @@ public struct TVDetail: Decodable {
                                           images: images)
         displayDetail.similars = similar.displayObjects
         displayDetail.recommendations = recommendations.displayObjects
+        displayDetail.totalSimilars = similar.totalResults
+        displayDetail.totalRecommendations = recommendations.totalResults
         return displayDetail
     }
 

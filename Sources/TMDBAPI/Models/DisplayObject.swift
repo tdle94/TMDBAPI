@@ -66,9 +66,13 @@ public struct DisplayDetail: Display, Identifiable {
     public var imageSelection: ImageSelectionType = .backdrops
     
     public var similars: [EntityTypeDisplay] = []
+    
+    var totalSimilars: Int = 0
 
     public var recommendations: [EntityTypeDisplay] = []
-    
+
+    var totalRecommendations: Int = 0
+
     public var entityToDisplay: [EntityTypeDisplay] {
         return entitySelection == .similars ? similars : recommendations
     }

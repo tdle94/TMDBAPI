@@ -48,6 +48,8 @@ public struct MovieDetail: Decodable {
                                           images: images)
         displayDetail.recommendations = recommendations.displayObjects
         displayDetail.similars = similar.displayObjects
+        displayDetail.totalSimilars = similar.totalResults
+        displayDetail.totalRecommendations = recommendations.totalResults
         return displayDetail
     }
 
