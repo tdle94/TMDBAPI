@@ -190,24 +190,20 @@ public struct TVDetail: Decodable {
         return "https://image.tmdb.org/t/p/original/" + posterPath
     }
 
-    public var displayObject: DisplayObject {
-        var displayObj = DisplayObject(id: id,
-                                       type: .tvshow,
-                                       titleWithYear: name,
-                                       title: name,
-                                       backdropLink: "",
-                                       posterLink: posterLink,
-                                       overview: overview,
-                                       tagline: tagline)
-        displayObj.images = images
-        displayObj.similar = similar.displayObjects
-        displayObj.recommendations = recommendations.displayObjects
-        displayObj.credits = credits
-        displayObj.totalSimilars = similar.totalResults
-        displayObj.totalRecommends = recommendations.totalResults
-        displayObj.displayImageLinks = Array(images.backdropLinks.prefix(5))
-        displayObj.displaySameObjects = recommendations.displayObjects
-        return displayObj
+    public var backdropLink: String {
+        return "https://image.tmdb.org/t/p/original/" + backdropPath
+    }
+
+    public var displayObject: DisplayDetail {
+        return DisplayDetail(id: id,
+                             title: name,
+                             overview: overview,
+                             tagline: tagline,
+                             backdropLink: backdropLink,
+                             posterLink: posterLink,
+                             releaseDate: firstAirDate,
+                             credits: credits,
+                             images: images)
     }
 
     enum CodingKeys: String, CodingKey {

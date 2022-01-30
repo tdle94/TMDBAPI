@@ -7,38 +7,123 @@
 
 import Foundation
 
-public struct DisplayObject: Identifiable {
-    public enum DisplayType: String {
-        case tvshow = "tv"
-        case movie = "movie"
-        case people = "people"
+public enum ImageSelectionType: String {
+    case backdrops = "Backdrops"
+    case posters = "Posters"
+}
+
+public enum EntitySelectionType: String {
+    case similars = "Similars"
+    case recommendation = "Recommendations"
+}
+
+public protocol QuickDisplay {
+    var id: Int { get }
+    var title: String { get }
+    var subtitle: String { get }
+    var posterLink: String { get }
+}
+
+public protocol Display: QuickDisplay {
+    var overview: String { get }
+    var releaseDate: String { get }
+    var tagline: String { get }
+    var backdropLink: String { get }
+    var images: TMDBImage { get }
+    var entitySelection: EntitySelectionType { get set }
+    var imageSelection: ImageSelectionType { get set }
+    var credits: Credit { get }
+}
+
+extension Display {
+    public var subtitle: String {
+        return ""
+    }
+}
+
+public class DisplayDetail: Display, Identifiable {
+    
+    public var id: Int
+    
+    public var title: String
+    
+    public var overview: String
+    
+    public var tagline: String
+    
+    public var releaseDate: String
+    
+    public var backdropLink: String
+    
+    public var posterLink: String
+    
+    public var images: TMDBImage
+    
+    public var credits: Credit
+    
+    public var entitySelection: EntitySelectionType = .similars
+    
+    public var imageSelection: ImageSelectionType = .backdrops
+    
+    public var similars: [Display] = []
+
+    public var recommendations: [Display] = []
+    
+    public var entityToDisplay: [Display] {
+        return entitySelection == .similars ? similars : recommendations
+    }
+    
+    public var imageLinks: [String] {
+        return imageSelection == .backdrops ? images.backdropLinks : images.posterLinks
     }
 
-    public let id: Int
-    public let titleWithYear: String
-    public let title: String
-    public let backdropLink: String
-    public let posterLink: String
-    public let overview: String
-    public let tagline: String
-    public let type: DisplayType
-    public var images: TMDBImage = TMDBImage()
-    public var similar: [DisplayObject] = []
-    public var recommendations: [DisplayObject] = []
-    public var totalSimilars: Int = 0 // similar is paginated
-    public var totalRecommends: Int = 0 // recommend is paginated
-    public var displayImageLinks: [String] = []
-    public var displaySameObjects: [DisplayObject] = []
-    public var credits: Credit = Credit()
-
-    public init(id: Int, type: DisplayType, titleWithYear: String = "", title: String, backdropLink: String = "", posterLink: String, overview: String = "", tagline: String = "") {
+    public init(id: Int,
+                title: String,
+                overview: String,
+                tagline: String,
+                backdropLink: String,
+                posterLink: String,
+                releaseDate: String,
+                credits: Credit,
+                images: TMDBImage) {
         self.id = id
-        self.type = type
-        self.titleWithYear = titleWithYear
         self.title = title
-        self.backdropLink = backdropLink
-        self.posterLink = posterLink
-        self.overview = overview
         self.tagline = tagline
+        self.posterLink = posterLink
+        self.backdropLink = backdropLink
+        self.overview = overview
+        self.images = images
+        self.credits = credits
+        self.releaseDate = releaseDate
+    }
+}
+
+
+extension DisplayDetail {
+    public var titleWithYear: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-mm-dd"
+        if let date = dateFormatter.date(from: releaseDate), let year = Calendar.current.dateComponents([.year], from: date).year {
+            return title + " (\(year))"
+        }
+
+        return ""
+    }
+}
+
+public class EntityTypeDisplay: QuickDisplay, Identifiable {
+    public var id: Int
+    
+    public var title: String
+    
+    public var subtitle: String
+    
+    public var posterLink: String
+    
+    public init(id: Int, title: String, subtitle: String, posterLink: String) {
+        self.id = id
+        self.title = title
+        self.subtitle = subtitle
+        self.posterLink = posterLink
     }
 }

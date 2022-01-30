@@ -36,24 +36,16 @@ public struct MovieDetail: Decodable {
     public let recommendations: MovieType
     public let credits: Credit
 
-    public var displayObject: DisplayObject {
-        var displayObj = DisplayObject(id: id,
-                                       type: .movie,
-                                       titleWithYear: titleWithYear,
-                                       title: originalTitle,
-                                       backdropLink: backdropLink,
-                                       posterLink: posterLink,
-                                       overview: overview,
-                                       tagline: tagline)
-        displayObj.credits = credits
-        displayObj.similar = similar.displayObjects
-        displayObj.recommendations = recommendations.displayObjects
-        displayObj.images = images
-        displayObj.totalSimilars = similar.totalResults
-        displayObj.totalRecommends = recommendations.totalResults
-        displayObj.displayImageLinks = Array(images.backdropLinks.prefix(5))
-        displayObj.displaySameObjects = recommendations.displayObjects
-        return displayObj
+    public var displayObject: DisplayDetail {
+        return DisplayDetail(id: id,
+                             title: title,
+                             overview: overview,
+                             tagline: tagline,
+                             backdropLink: backdropLink,
+                             posterLink: posterLink,
+                             releaseDate: releaseDate,
+                             credits: credits,
+                             images: images)
     }
 
     enum CodingKeys: String, CodingKey {

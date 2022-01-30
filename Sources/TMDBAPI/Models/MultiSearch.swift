@@ -18,12 +18,8 @@ public struct MultiSearch: Decodable {
             return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
         }
         
-        public var displayObject: DisplayObject {
-            return DisplayObject(id: id,
-                                 type: .init(rawValue: mediaType) ?? .movie,
-                                 title: title,
-                                 posterLink: posterLink,
-                                 overview: overview)
+        public var displayObject: EntityTypeDisplay {
+            return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink)
         }
         
         enum CodingKeys: String, CodingKey {
@@ -46,7 +42,7 @@ public struct MultiSearch: Decodable {
     public let totalPages: Int
     public let results: [Result]
 
-    public var displayObjects: [DisplayObject] {
+    public var displayObjects: [EntityTypeDisplay] {
         return results.compactMap { $0.displayObject }.filter { !$0.title.isEmpty }
     }
 
