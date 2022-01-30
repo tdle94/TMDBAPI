@@ -18,7 +18,7 @@ public struct MultiSearch: Decodable {
             return "https://image.tmdb.org/t/p/original/" + (posterPath ?? "")
         }
         
-        public var displayObject: EntityTypeDisplay {
+        public var displayObject: QuickDisplay {
             return EntityTypeDisplay(id: id, title: title, subtitle: overview, posterLink: posterLink)
         }
         
@@ -42,7 +42,7 @@ public struct MultiSearch: Decodable {
     public let totalPages: Int
     public let results: [Result]
 
-    public var displayObjects: [EntityTypeDisplay] {
+    public var displayObjects: [QuickDisplay] {
         return results.compactMap { $0.displayObject }.filter { !$0.title.isEmpty }
     }
 

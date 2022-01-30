@@ -194,7 +194,7 @@ public struct TVDetail: Decodable {
         return "https://image.tmdb.org/t/p/original/" + backdropPath
     }
 
-    public var displayObject: DisplayDetail {
+    public var displayObject: QuickDisplay {
         return DisplayDetail(id: id,
                              title: name,
                              overview: overview,

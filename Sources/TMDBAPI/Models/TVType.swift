@@ -27,7 +27,7 @@ public struct TVType: Decodable {
             return "https://image.tmdb.org/t/p/w200" + (posterPath ?? "")
         }
 
-        public var displayObject: EntityTypeDisplay {
+        public var displayObject: QuickDisplay {
             return EntityTypeDisplay(id: id, title: name, subtitle: overview, posterLink: posterLink)
         }
 
@@ -56,7 +56,7 @@ public struct TVType: Decodable {
     public let totalPages: Int
     public let totalResults: Int
 
-    public var displayObjects: [EntityTypeDisplay] {
+    public var displayObjects: [QuickDisplay] {
         return results.compactMap { $0.displayObject }
     }
 

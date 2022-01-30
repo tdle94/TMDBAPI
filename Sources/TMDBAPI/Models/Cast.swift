@@ -25,7 +25,7 @@ public struct Cast: Decodable, Identifiable {
         return "https://image.tmdb.org/t/p/original/" + profilePath
     }
     
-    public var displayObject: EntityTypeDisplay {
+    public var displayObject: QuickDisplay {
         return EntityTypeDisplay(id: id, title: originalName, subtitle: character, posterLink: profileLink)
     }
     
